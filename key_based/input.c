@@ -1,6 +1,7 @@
 #include<stdio.h>
-#include <termios.h>            //termios, TCSANOW, ECHO, ICANON
-#include <unistd.h>     //STDIN_FILENO
+#include <termios.h>
+#include <unistd.h>  
+#include <portaudio.h>
 
 int get_input(char input[256]){
     int c;   
