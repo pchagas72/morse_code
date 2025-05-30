@@ -2,4 +2,5 @@
 
 ## TODO:
 
-- Fazer um lexer/parser para o código digitado
+- Adicionar interpretação de espaço
+- Remover time-based e lixo
