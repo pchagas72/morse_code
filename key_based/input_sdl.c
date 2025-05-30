@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <SDL2/SDL.h>
 #include <math.h>
+#include "./translator.h"
 
 #define SAMPLE_RATE 44100
 #define FREQUENCY 800.0
@@ -17,7 +18,7 @@ void play_tone(int ms) {
     float *buffer = malloc(sizeof(float) * samples);
     
     // Fill buffer with sine wave
-    for (int i = 0; i < samples; i++) {
+    for (int i =0; i < samples; i++) {
         buffer[i] = 0.3f * sinf(2.0f * M_PI * FREQUENCY * i / SAMPLE_RATE);
     }
 
@@ -47,18 +48,21 @@ int get_input(char input[256]) {
     while ((c = getchar()) != 'e') {
         if (c == 'j') {
             printf(".");
-            input[counter++] = '.';
+            input[counter] = '.';
             play_tone(DOT_DURATION_MS);
+            counter++;
         }
         if (c == 'k') {
             printf("-");
-            input[counter++] = '-';
+            input[counter] = '-';
             play_tone(DASH_DURATION_MS);
+            counter++;
         }
         if (c == 'f' || c == ' ') {
             printf(" ");
-            input[counter++] = ' ';
+            input[counter] = ' ';
             SDL_Delay(DOT_DURATION_MS); // pause between letters
+            counter++;
         }
     }
     return counter;
@@ -73,23 +77,9 @@ int main(void) {
 
     SDL_Init(SDL_INIT_AUDIO);
 
-    char input[256];
-    int counter = get_input(input);
-
-    printf("\n");
-    for (int i = 0; i < counter; i++) {
-        printf("%c", input[i]);
-        if (input[i] == '.'){
-            play_tone(DOT_DURATION_MS);
-        }
-        if (input[i] == '-'){
-            play_tone(DASH_DURATION_MS);
-        }
-        if (input[i] == ' '){
-            SDL_Delay(DOT_DURATION_MS);
-        }
-    }
-    printf("\n");
+    char buffer[256];
+    int counter = get_input(buffer);
+    walk(buffer,counter);
 
     SDL_Quit();
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
