@@ -2,5 +2,5 @@
 
 ## TODO:
 
-- Adicionar interpretação de espaço
-- Remover time-based e lixo
+- Adicionar interpretação de espaço [OK]
+- Remover time-based e lixo [OK]
