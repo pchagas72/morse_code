@@ -1,4 +1,4 @@
-#include "./translator.h"
+#include "./lexer.h"
 
 char table_translate(int code){
     int letras[26] = {
