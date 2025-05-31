@@ -5,6 +5,7 @@
 #include "./lexer/lexer.h"
 #include "./sound/sound.h"
 #include "./input/input.h"
+#include "./learning/learning.h"
 
 int main(void) {
     static struct termios oldt, newt;
@@ -18,7 +19,7 @@ int main(void) {
     char buffer[256];
     int counter = get_input(buffer);
     walk(buffer,counter);
-
+    read_file();
     SDL_Quit();
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
     return 0;
