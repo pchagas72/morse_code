@@ -2,5 +2,5 @@
 #include <string.h>
 #include "../sound/sound.h"
 
-void walk(char *code, int size);
+int walk(char *code, int size, char *output_buffer);
 char table_translate(int code);

@@ -17,9 +17,27 @@ int main(void) {
     SDL_Init(SDL_INIT_AUDIO);
 
     char buffer[256];
+    char challange[256];
+    int challange_counter = 0;
+    read_file(challange, &challange_counter);
+    printf("Challange: ");
+    for (int i = 0;i < challange_counter;i++) {
+        printf("%c", challange[i]);
+    }
+    printf("\n");
+    printf(">>> ");
     int counter = get_input(buffer);
-    walk(buffer,counter);
-    read_file();
+    printf("\n");
+    printf("\n");
+    printf("You wrote: ");
+    char output_buffer[counter];
+    int output_counter = walk(buffer,counter,output_buffer);
+    for (int i = 0;i < output_counter; i++) {
+        printf("%c",output_buffer[i]);
+    }
+    printf("\n");
+    int points = compare(challange, output_buffer, output_counter);
+    printf("You've made %d/%d points\n", points,challange_counter-1);
     SDL_Quit();
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
     return 0;

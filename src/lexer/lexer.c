@@ -25,12 +25,12 @@ char table_translate(int code){
     }
 }
 
-void walk(char *input, int size){
+int walk(char *input, int size,
+          char *output_buffer){
     int code = 0;
     int counter = 0;
     int letras_counter = 0;
     char translated_buffer[size];
-    printf("\n");
     for (int i = 0;i<size;i++) {
         if (input[i] == ' ' ) {
             translated_buffer[letras_counter] = table_translate(code);
@@ -54,10 +54,10 @@ void walk(char *input, int size){
             letras_counter++;
         }
     }
-    char translated[letras_counter];
+    int ocounter = 0;
     for (int i = 0;i < letras_counter;i++) {
-        translated[i] = translated_buffer[i];
-        printf("%c",translated[i]);
+        output_buffer[i] = translated_buffer[i];
+        ocounter++;
     }
-    printf("\n");
+    return ocounter;
 }
