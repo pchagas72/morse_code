@@ -58,5 +58,3 @@ int get_input(char input[256]) {
     }
     return counter;
 }
-
-
