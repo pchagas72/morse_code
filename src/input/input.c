@@ -23,6 +23,7 @@ int get_input(char input[256]) {
         }
         if (c == 't'){
             printf("\n");
+            printf("\n");
             printf("a : .-\n");
             printf("b : -...\n");
             printf("c : -.-.\n");
