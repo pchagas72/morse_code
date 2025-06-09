@@ -4,11 +4,15 @@ void read_file(char *challange, int *challange_counter) {
     FILE *fptr;
     char myString[100];
     int line_count = 0;
+    char *homeDir = getenv("HOME");
+    strcat(homeDir, "/.local/phrases.txt");
 
     // Conta quantas linhas tem
-    fptr = fopen("phrases.txt", "r");
+    
+    fptr = fopen(homeDir, "r");
     if (fptr == NULL) {
-        perror("Error reading file: does phrases.txt exist?");
+        perror("Error reading file: does $HOME/.local/phrases.txt exist?");
+        *challange_counter = -1;
         return;
     }
 
@@ -19,6 +23,7 @@ void read_file(char *challange, int *challange_counter) {
 
     if (line_count == 0) {
         printf("There are no challanges.\n");
+        *challange_counter = -1;
         return;
     }
 
@@ -27,7 +32,7 @@ void read_file(char *challange, int *challange_counter) {
     int random_line = rand() % line_count;
 
     // Lê novamente até a linha sorteada
-    fptr = fopen("phrases.txt", "r");
+    fptr = fopen(homeDir, "r");
     int current_line = 0;
     while (fgets(myString, sizeof(myString), fptr) != NULL) {
         if (current_line == random_line) {

@@ -20,6 +20,9 @@ int main(void) {
     char challange[256];
     int challange_counter = 0;
     read_file(challange, &challange_counter);
+    if (challange_counter == -1){
+        return 1;
+    }
     printf("Challange: ");
     for (int i = 0;i < challange_counter;i++) {
         printf("%c", challange[i]);
